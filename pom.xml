@@ -15,16 +15,28 @@
     <description>Portfolio</description>
     <url/>
     <licenses>
-        <license/>
+        <license>
+            <name>MIT License</name>
+            <url>https://opensource.org/license/mit</url>
+            <distribution>repo</distribution>
+        </license>
     </licenses>
     <developers>
-        <developer/>
+        <developer>
+            <id>glabay</id>
+            <name>Glabay</name>
+            <organization>Glabay-Studios</organization>
+            <roles>
+                <role>Developer</role>
+            </roles>
+            <timezone>America/Halifax</timezone>
+        </developer>
     </developers>
     <scm>
-        <connection/>
-        <developerConnection/>
-        <tag/>
-        <url/>
+        <connection>scm:git:git://github.com/Glabay/Portfolio.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com:Glabay/Portfolio.git</developerConnection>
+        <tag>HEAD</tag>
+        <url>https://github.com/Glabay/Portfolio</url>
     </scm>
     <properties>
         <java.version>25</java.version>

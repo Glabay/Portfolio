@@ -1,0 +1,27 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<body>
+<header th:fragment="header" class="site-header">
+    <nav class="nav-container">
+        <div class="logo">
+            <a th:href="@{/}">Midnight Blog</a>
+        </div>
+        <ul class="nav-links">
+            <li>
+                <a th:href="@{/blogs}">Blogs</a>
+            </li>
+        </ul>
+        <div class="auth-buttons">
+        <div th:if="${#authorization.expression('isAuthenticated()')}">
+            <form th:action="@{/logout}" method="post">
+                <button type="submit" class="logout-btn">Logout</button>
+            </form>
+        </div>
+            <div th:unless="${#authorization.expression('isAuthenticated()')}">
+                <a th:href="@{/login}" class="btn btn-outline">Login</a>
+                <a th:href="@{/register}" class="btn btn-primary">Sign Up</a>
+            </div>
+        </div>
+    </nav>
+</header>
+</body>
+</html>

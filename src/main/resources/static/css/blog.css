@@ -1,0 +1,92 @@
+.card-details {
+    flex: 1;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-title {
+    font-size: 1.2rem;
+    margin: 0 0 0.2rem 0;
+}
+
+.card-author {
+    font-size: 1.8rem;
+    margin: 0 0 0.2rem 0;
+}
+
+.card-dates {
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+.card-description {
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 1.5rem;
+    flex: 1;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(168, 85, 247, 0.1);
+}
+
+.card-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.blog-stack {
+    display: flex;
+    flex-direction: column;
+}
+
+.list-container {
+    max-width: 1100px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.page-title {
+    font-size: 1.8rem;
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.page-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.blog-card-large {
+    backdrop-filter: blur(15px);
+    /* Adding a boarder to see the card*/
+    border: 1px solid rgba(168, 85, 247, 0.2);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.blog-card-large:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.add-btn:hover {
+    background: rgba(168, 85, 247, 0.1);
+    box-shadow: 0 0 10px rgba(168, 85, 247, 0.2);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    justify-content: center;
+    align-items: center;
+}

@@ -20,7 +20,7 @@ public class RegistrationService {
         return userRepository.findByUsernameIgnoreCase(username).isPresent();
     }
 
-    public void save(User user) {
-        userRepository.save(user);
+    public User save(User user) {
+        return userRepository.save(user);
     }
 }

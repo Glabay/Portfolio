@@ -2,6 +2,7 @@ package dev.midnightcoder.portfolio.controller;
 
 import dev.midnightcoder.portfolio.dto.RegistrationRequest;
 import dev.midnightcoder.portfolio.model.User;
+import dev.midnightcoder.portfolio.service.ProfileService;
 import dev.midnightcoder.portfolio.service.RegistrationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -22,6 +23,7 @@ import java.util.Objects;
 @RequiredArgsConstructor
 @RequestMapping("/api/auth")
 public class AuthController {
+    private final ProfileService profileService;
     private final RegistrationService registrationService;
     private final BCryptPasswordEncoder passwordEncoder;
 
@@ -41,6 +43,9 @@ public class AuthController {
             user.setEmail(request.getEmail());
             user.setPassword(passwordEncoder.encode(request.getPassword()));
 
+        var savedUser = registrationService.save(user);
+        var profile = profileService.createProfile(savedUser, request);
+        user.setProfile(profile);
         registrationService.save(user);
         return "redirect:/login?registered";
     }

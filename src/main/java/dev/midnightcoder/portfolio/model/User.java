@@ -22,6 +22,9 @@ public class User {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
+    @OneToOne
+    private Profile profile;
+
     @Column(nullable = false, unique = true)
     private String username;
 

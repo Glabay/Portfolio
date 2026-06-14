@@ -19,7 +19,7 @@ import org.springframework.stereotype.Service;
 @Service
 @NullMarked
 @RequiredArgsConstructor
-public class CustomerUserDetailsService implements UserDetailsService {
+public class CustomUserDetailsService implements UserDetailsService {
     @Autowired
     private UserRepository userRepository;
 

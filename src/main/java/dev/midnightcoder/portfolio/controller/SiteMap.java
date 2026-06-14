@@ -19,6 +19,11 @@ public class SiteMap {
         return "index";
     }
 
+    @GetMapping("/login")
+    public String getLoginPage() {
+        return "login";
+    }
+
     @GetMapping("/register")
     public String getRegistrationPage(Model model) {
         model.addAttribute("registrationRequest", new RegistrationRequest());

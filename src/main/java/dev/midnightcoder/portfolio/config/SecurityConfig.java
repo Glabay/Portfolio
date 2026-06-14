@@ -1,14 +1,10 @@
 package dev.midnightcoder.portfolio.config;
 
-import dev.midnightcoder.portfolio.service.CustomerUserDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configurers.AbstractAuthenticationFilterConfigurer;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.logout.HeaderWriterLogoutHandler;
 import org.springframework.security.web.header.writers.ClearSiteDataHeaderWriter;
@@ -32,7 +28,9 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers(
                     "/",
+                    "/login",
                     "/register",
+                    "/error",
                     "/api/auth/**"
                 ).permitAll()
                 .requestMatchers(HttpMethod.GET,
@@ -44,8 +42,14 @@ public class SecurityConfig {
                 ).permitAll()
                 .anyRequest().authenticated()
             )
-            .formLogin(AbstractAuthenticationFilterConfigurer::permitAll)
+            .formLogin(login -> login
+                .loginPage("/login")
+                .defaultSuccessUrl("/", true)
+                .failureUrl("/login?error")
+                .permitAll()
+            )
             .logout(logout -> logout
+                .logoutSuccessUrl("/")
                 .addLogoutHandler(new HeaderWriterLogoutHandler(
                     new ClearSiteDataHeaderWriter(COOKIES)
                 ))
@@ -53,17 +57,4 @@ public class SecurityConfig {
             .headers(AbstractHttpConfigurer::disable)
             .build();
     }
-
-    @Bean
-    public BCryptPasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
-    @Bean
-    public DaoAuthenticationProvider daoAuthenticationProvider() {
-        var provider = new DaoAuthenticationProvider(new CustomerUserDetailsService());
-            provider.setPasswordEncoder(new BCryptPasswordEncoder());
-        return provider;
-    }
-
 }

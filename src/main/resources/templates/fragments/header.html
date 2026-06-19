@@ -1,27 +1,31 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <body>
 <header th:fragment="header" class="site-header">
-    <nav class="d-flex flex-row align-items-center">
-        <div class="col text-start logo">
-            <a th:href="@{/}">Midnight Blog</a>
-        </div>
-        <ul class="col text-center nav-links">
-            <li>
-                <a th:href="@{/blogs}">Blogs</a>
-            </li>
-        </ul>
-        <div class="col text-end auth-buttons">
-            <div th:if="${#authorization.expression('isAuthenticated()')}">
-                <form th:action="@{/logout}" method="post">
-                    <button type="submit" class="logout-btn">Logout</button>
-                </form>
+    <div class="container">
+        <nav class="row align-items-center">
+            <div class="col d-flex align-items-center logo">
+                <a th:href="@{/}">Midnight Blog</a>
             </div>
-            <div th:unless="${#authorization.expression('isAuthenticated()')}">
-                <a th:href="@{/login}" class="btn btn-outline">Login</a>
-                <a th:href="@{/register}" class="btn btn-primary">Sign Up</a>
+            <div class="col d-flex justify-content-center">
+                <ul class="nav-links">
+                    <li>
+                        <a th:href="@{/blogs}">Blogs</a>
+                    </li>
+                </ul>
             </div>
-        </div>
-    </nav>
+            <div class="col d-flex justify-content-center justify-content-md-end align-items-center auth-buttons">
+                <div th:if="${#authorization.expression('isAuthenticated()')}">
+                    <form th:action="@{/logout}" method="post">
+                        <button type="submit" class="btn btn-secondary">Logout</button>
+                    </form>
+                </div>
+                <div th:unless="${#authorization.expression('isAuthenticated()')}">
+                    <a th:href="@{/login}" class="btn btn-secondary">Login</a>
+                    <a th:href="@{/register}" class="btn btn-primary">Sign Up</a>
+                </div>
+            </div>
+        </nav>
+    </div>
 </header>
 </body>
 </html>

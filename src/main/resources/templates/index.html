@@ -2,12 +2,18 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" th:href="@{/css/header.css}">
     <title>Developer Portfolio</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/header.css}">
 </head>
 <body>
     <div th:replace="~{fragments/header :: header}"></div>
-    <h1>Hello Midnight Coders!</h1>
-    <p>Welcome to my developer portfolio. Explore my projects and skills.</p>
+    <div class="container py-5 text-center">
+        <h1 class="display-4 mb-4">Hello Midnight Coders!</h1>
+        <p class="lead mb-5">Welcome to my developer portfolio. Explore my projects and skills.</p>
+        <div class="d-flex justify-content-center gap-3">
+            <a th:href="@{/blogs}" class="btn btn-primary btn-lg">Explore Blogs</a>
+        </div>
+    </div>
 </body>
 </html>

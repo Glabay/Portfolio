@@ -2,33 +2,49 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" th:href="@{/css/header.css}">
     <title>Login</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/header.css}">
 </head>
 <body>
 <!-- Reuse the Header Fragment on EVERY page -->
 <div th:replace="~{fragments/header :: header}"></div>
 
-<h1>Login</h1>
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-sm mt-5">
+                <div class="card-body p-4">
+                    <h1 class="h3 mb-4 text-center">Login</h1>
 
-<p th:if="${param.error}" th:text="'Error: ' + ${param.error}"></p>
-<p th:if="${param.logout}" th:text="'You have been logged out.'"></p>
-<p th:if="${param.registration}" th:text="'You have been registered.'"></p>
+                    <div th:if="${param.error}" class="alert alert-danger py-2" role="alert" th:text="'Error: ' + ${param.error}"></div>
+                    <div th:if="${param.logout}" class="alert alert-info py-2" role="alert">You have been logged out.</div>
+                    <div th:if="${param.registration}" class="alert alert-success py-2" role="alert">You have been registered.</div>
 
-<form th:action="@{/login}" method="post">
-    <div>
-        <label for="username">Username</label>
-        <input type="text" id="username" name="username" required>
+                    <form th:action="@{/login}" method="post">
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Username</label>
+                            <input type="text" id="username" name="username" class="form-control" required>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" id="password" name="password" class="form-control" required>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary">Login</button>
+                        </div>
+                    </form>
+
+                    <div class="mt-4 text-center">
+                        <p class="mb-1 small">Don't have an account? <a th:href="@{/register}">Sign up</a></p>
+                        <a th:href="@{/}" class="small text-muted text-decoration-none">&larr; Back to home</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <div>
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" required>
-    </div>
-
-    <button type="submit">Login</button>
-</form>
-
-<p><a href="/">Back to home</a></p>
+</div>
 </body>
 </html>

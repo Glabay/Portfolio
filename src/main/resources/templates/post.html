@@ -19,9 +19,14 @@
             </div>
         </div>
 
-        <button th:if="${#authentication.isAuthenticated()}" class="btn btn-success mb-4" id="add-comment-btn">
-            Create A Comment
-        </button>
+        <div th:unless="${#authorization.expression('isAuthenticated()')}" class="d-flex flex-column gap-3 mb-5">
+            <p class="text-muted">You must be logged in to create a comment.</p>
+        </div>
+        <div th:if="${#authorization.expression('isAuthenticated()')}">
+            <button class="btn btn-success mb-4" id="add-comment-btn">
+                Create A Comment
+            </button>
+        </div>
 
         <p th:if="${#lists.isEmpty(post.getComments())}" class="text-muted">No comments yet... Be the first.</p>
         <div th:unless="${#lists.isEmpty(post.getComments())}" class="d-flex flex-column gap-3 mb-5">

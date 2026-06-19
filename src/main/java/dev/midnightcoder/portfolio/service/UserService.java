@@ -3,6 +3,7 @@ package dev.midnightcoder.portfolio.service;
 import dev.midnightcoder.portfolio.model.User;
 import dev.midnightcoder.portfolio.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
@@ -22,12 +23,12 @@ public class UserService {
     public User getUserByUsername(String username) {
         return userRepository.findByUsernameIgnoreCase(username)
             .orElseThrow(() ->
-                new IllegalArgumentException("User not found"));
+                new UsernameNotFoundException("User not found"));
     }
 
     public User getUserByUserId(UUID userId) {
         return userRepository.findById(userId)
             .orElseThrow(() ->
-                new IllegalArgumentException("User not found with ID: " + userId));
+                new UsernameNotFoundException("User not found with ID: " + userId));
     }
 }

@@ -28,13 +28,14 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers(
                     "/",
+                    "/blogs",
+                    "/blogs/**",
                     "/login",
                     "/register",
                     "/error",
                     "/api/auth/**"
                 ).permitAll()
                 .requestMatchers(HttpMethod.GET,
-                    "/blogs/**",
                     "/css/**",
                     "/js/**",
                     "/img/**",

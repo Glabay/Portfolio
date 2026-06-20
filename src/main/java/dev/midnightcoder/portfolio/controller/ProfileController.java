@@ -1,13 +1,13 @@
 package dev.midnightcoder.portfolio.controller;
 
+import dev.midnightcoder.portfolio.dto.BioUpdateRequest;
 import dev.midnightcoder.portfolio.model.Profile;
 import dev.midnightcoder.portfolio.service.ProfileService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
@@ -34,5 +34,19 @@ public class ProfileController {
     public ResponseEntity<Profile> getProfileById(@PathVariable String id) {
         var uuid = UUID.fromString(id);
         return ResponseEntity.ok(profileService.getProfileForId(uuid));
+    }
+
+    @PutMapping("/{id}/bio")
+    public ResponseEntity<Profile> updateBio(@PathVariable String id,
+                                             @Valid @RequestBody BioUpdateRequest request,
+                                             BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            // TODO: Handle validation errors
+            //      - Challenge: Implement error handling for validation errors
+            return ResponseEntity.badRequest().build();
+        }
+
+        var uuid = UUID.fromString(id);
+        return ResponseEntity.ok(profileService.updateBio(uuid, request.getBio()));
     }
 }

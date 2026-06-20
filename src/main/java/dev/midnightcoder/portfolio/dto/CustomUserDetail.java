@@ -1,5 +1,6 @@
 package dev.midnightcoder.portfolio.dto;
 
+import dev.midnightcoder.portfolio.model.AdminProfile;
 import dev.midnightcoder.portfolio.model.User;
 import org.jspecify.annotations.NullMarked;
 import org.jspecify.annotations.Nullable;
@@ -26,6 +27,8 @@ public class CustomUserDetail implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
+        if (user.getProfile() instanceof AdminProfile)
+            return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"));
         return List.of(new SimpleGrantedAuthority("ROLE_USER"));
     }
 

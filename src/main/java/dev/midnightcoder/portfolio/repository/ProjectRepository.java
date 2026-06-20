@@ -1,10 +1,10 @@
 package dev.midnightcoder.portfolio.repository;
 
-import dev.midnightcoder.portfolio.model.Profile;
+import dev.midnightcoder.portfolio.model.Project;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -12,9 +12,9 @@ import java.util.UUID;
  * @project Portfolio
  * @social Discord: Glabay
  * @website <a href="https://midnightcoder.dev">Midnight Coder</a>
- * @since 2026-06-14
+ * @since 2026-06-20
  */
 @Repository
-public interface ProfileRepository extends JpaRepository<Profile, UUID> {
-    Optional<Profile> findFirstByOrderByCreatedAtAsc();
+public interface ProjectRepository extends JpaRepository<Project, UUID> {
+    List<Project> findTop3ByOrderByCreatedAtDesc();
 }

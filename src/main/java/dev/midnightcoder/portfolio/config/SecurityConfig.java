@@ -30,11 +30,14 @@ public class SecurityConfig {
                     "/",
                     "/blogs",
                     "/blogs/**",
+                    "/projects",
+                    "/projects/**",
                     "/login",
                     "/register",
                     "/error",
                     "/api/auth/**"
                 ).permitAll()
+                .requestMatchers(HttpMethod.PUT, "/api/v1/profiles/**").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.GET,
                     "/css/**",
                     "/js/**",

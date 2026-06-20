@@ -41,4 +41,15 @@ public class ProfileService {
         return profileRepository.findById(uuid).orElseThrow(() ->
             new IllegalArgumentException("Profile not found"));
     }
+
+    public Profile getAdminProfile() {
+        return profileRepository.findFirstByOrderByCreatedAtAsc()
+            .orElse(null);
+    }
+
+    public Profile updateBio(UUID profileId, String bio) {
+        var profile = getProfileForId(profileId);
+        profile.setBio(bio);
+        return profileRepository.save(profile);
+    }
 }
